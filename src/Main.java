@@ -7,20 +7,28 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int[][] tablero = new int[4][5];
         int numero_minas = 0;
+        int mina;
         int tesoro;
         int fila;
         int columna;
         int contador_intentos = 0;
 
 
+         tablero[(int) (Math.random()*4)][(int) (Math.random()*5)] = 2;
+
+
         while (numero_minas < 3){
-            tablero[(int) (Math.random()*4)][(int) (Math.random()*5)] = 1;
-            numero_minas++;
+
+            int fila2=(int) (Math.random()*4);
+            int columna2=(int) (Math.random()*4);
+
+            if (tablero[fila2][columna2] == 0){
+                tablero[fila2][columna2] = 1;
+                numero_minas++;
+            }
         }
 
-        if (tablero[(int) (Math.random()*4)][(int) (Math.random()*5)] == 0){
-            tesoro = tablero[(int) (Math.random()*4)][(int) (Math.random()*5)] = 2;
-        }
+
 
         for (int i = 0; i < tablero.length; i++){
             System.out.println();
@@ -29,6 +37,7 @@ public class Main {
             }
         }
         System.out.println();
+
 //        for (int i = 0; i < tablero.length; i++){
 //            for (int j = 0; j < tablero[0].length; j++){
 //                if (tablero[i][j] = )
@@ -64,7 +73,7 @@ public class Main {
                 } else if (columna > 4) {
                     System.out.println("las columnas van de 0 hasta 4");
                 }
-            }while(fila > 3 && columna > 4);
+            }while(fila > 3 || columna > 4);
 
             if (tablero[fila][columna] == 1){
                 System.out.println("""
@@ -81,7 +90,5 @@ public class Main {
         }while(!(tablero[fila][columna] == 1 || tablero[fila][columna] == 2));
 
         System.out.println("Has tardado " + contador_intentos + " intento/s");
-
-
     }
 }
